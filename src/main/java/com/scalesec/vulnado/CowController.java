@@ -10,6 +10,12 @@ import java.io.Serializable;
 public class CowController {
     @RequestMapping(value = "/cowsay")
     String cowsay(@RequestParam(defaultValue = "I love Linux!") String input) {
-        return Cowsay.run(input);
+        boolean stringOnlyChars = input.matches("[a-zA-Z]+");
+        if(stringOnlyChars) {
+            return Cowsay.run(input);
+        }
+        else {
+            return "";
+        }
     }
 }
